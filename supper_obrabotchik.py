@@ -9,20 +9,20 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
         conn = sqlite3.connect(db_filepath)
         cur = conn.cursor()
         # Создаем таблицу для хранения данных
-        cur.execute('''CREATE TABLE IF NOT EXISTS table (
+        cur.execute('''CREATE TABLE IF NOT EXISTS date (
             name TEXT,
-            birth INTEGER,
+            birth DATE,
             job TEXT,
             company TEXT,
             country TEXT,
             city TEXT,
             address TEXT,
-            zip_code INTEGER,                                         
-            phone INTEGER,
+            zip_code TEXT,                                         
+            phone TEXT,
             email TEXT,
-            card_number INTEGER,
-            card_expire INTEGER,
-            security_code INTEGER,
+            card_number TEXT,
+            card_expire TEXT,
+            security_code TEXT,
             url TEXT
         )''')
         # name;birth;job;company;country;city;address;zip_code;phone;
@@ -31,9 +31,9 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
         # Проходим по каждой строке CSV файла и записываем данные в таблицу
         next(reader)  # Пропускаем заголовок CSV файла
         for row in reader:
-            cur.execute("INSERT INTO books VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", row)
+            cur.execute("INSERT INTO date VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", row)
         # Сохраняем изменения в базе данных
         conn.commit()
         # Закрываем соединение с базой данных
         conn.close()
-save_csv_to_sqlite('data.csv', 'data.db')
+save_csv_to_sqlite('file.csv', 'data.db')
