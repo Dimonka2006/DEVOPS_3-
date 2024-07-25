@@ -11,7 +11,7 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
         # Создаем таблицу для хранения данных
         cur.execute('''CREATE TABLE IF NOT EXISTS date (
             name TEXT,
-            birth DATE,
+            birth BLOB,
             job TEXT,
             company TEXT,
             country TEXT,
@@ -36,4 +36,4 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
         conn.commit()
         # Закрываем соединение с базой данных
         conn.close()
-save_csv_to_sqlite('file.csv', 'data.db')
+save_csv_to_sqlite('file.csv', 'db/database.db')
