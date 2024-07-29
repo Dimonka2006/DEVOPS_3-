@@ -30,13 +30,14 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
 
         # Проходим по каждой строке CSV файла и записываем данные в таблицу
         next(reader)  # Пропускаем заголовок CSV файла
-        for row in reader:
-            cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(row))
+        for rows in reader:
+            for row in rows:
+                cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(row))
         # # Проверяем количество добавленных строк
-            if cur.rowcount != 0:
-                print(f"{cur.rowcount} rows inserted successfully.")
-            else:
-                print("No rows were inserted.")
+                if cur.rowcount != 0:
+                    print(f"{cur.rowcount} rows inserted successfully.")
+                else:
+                    print("No rows were inserted.")
         # Сохраняем изменения в базе данных
         conn.commit()
         # Закрываем соединение с базой данных
