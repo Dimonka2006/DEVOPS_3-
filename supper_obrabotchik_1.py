@@ -29,33 +29,21 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
         # email;card_number;card_expire;security_code;url
 
         # Проходим по каждой строке CSV файла и записываем данные в таблицу
-        # next(reader)  # Пропускаем заголовок CSV файла
-        # for row in reader:
-        #     cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", tuple(row))
-        # # Проверяем количество добавленных строк
-        # if cur.rowcount != 0:
-        #     print(f"{cur.rowcount} rows inserted successfully.")
-        # else:
-        #     print("No rows were inserted.")
-        # # Сохраняем изменения в базе данных
-        # conn.commit()
-        # # Закрываем соединение с базой данных
-        # conn.close()
-        # # Не забываем закрыть курсор
-        # cur.close()
-
-#save_csv_to_sqlite('file.csv', 'db/database.db')
-        # Вставка данных из CSV в базу данных
+        next(reader)  # Пропускаем заголовок CSV файла
         for row in reader:
-            values = []
-            for key in row:
-                values.append("'" + str(row[key]) + "'")
-            sql = "INSERT INTO users VALUES (" + ",".join(values) + ")"
-            cur.execute(sql)
+            cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(row.values()))
+        # # Проверяем количество добавленных строк
+        if cur.rowcount != 0:
+            print(f"{cur.rowcount} rows inserted successfully.")
+        else:
+            print("No rows were inserted.")
         # Сохраняем изменения в базе данных
         conn.commit()
         # Закрываем соединение с базой данных
         conn.close()
+        # закрываем курсор
+        cur.close()
+
 
 # Вызов функции для импорта данных
-save_csv_to_sqlite('file.csv', 'db/database.db')
+save_csv_to_sqlite('file.csv', 'database.db')
