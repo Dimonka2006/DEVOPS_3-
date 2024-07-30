@@ -4,7 +4,7 @@ import csv
 def save_csv_to_sqlite(csv_filepath, db_filepath):
     # Открытие файла CSV
     with open(csv_filepath, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+        reader = csv.reader(csvfile, delimiter=';')
         # Создание подключения к базе данных
         conn = sqlite3.connect(db_filepath)
         cur = conn.cursor()
@@ -30,20 +30,25 @@ def save_csv_to_sqlite(csv_filepath, db_filepath):
 
         # Проходим по каждой строке CSV файла и записываем данные в таблицу
         next(reader)  # Пропускаем заголовок CSV файла
+        count = 1
         for row in reader:
-            cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(row))
-        # # Проверяем количество добавленных строк
-            if cur.rowcount != 0:
-                print(f"{cur.rowcount} rows inserted successfully.")
+            if count %2 != 0:
+                row1 = row
             else:
-                print("No rows were inserted.")
+                row1 = row1 + row
+                #print(row1)       
+                st = ''.join(row1) 
+                elem = st.split(';') # 
+                #print(elem)
+                cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(elem))
+            count = count + 1 
+
         # Сохраняем изменения в базе данных
         conn.commit()
-        # Закрываем соединение с базой данных
-        conn.close()
         # закрываем курсор
         cur.close()
-
+        # Закрываем соединение с базой данных
+        conn.close()
 
 # Вызов функции для импорта данных
 save_csv_to_sqlite('file.csv', 'database.db')

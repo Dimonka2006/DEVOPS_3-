@@ -4,7 +4,7 @@ import csv
 def save_csv_to_sqlite(csv_filepath, db_filepath):
     # Открытие файла CSV
     with open(csv_filepath, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+        reader = csv.reader(csvfile)
         # Создание подключения к базе данных
         conn = sqlite3.connect(db_filepath)
         cur = conn.cursor()
