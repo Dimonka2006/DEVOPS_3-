@@ -1,7 +1,7 @@
-import sqlite3
-import csv
 import os
 import gzip
+import sqlite3
+import csv
 
 # Путь к папке с архивами
 source_dir = 'archive'
@@ -9,30 +9,6 @@ source_dir = 'archive'
 #print(os.listdir(source_dir))
 # Путь к базе данных
 db_path = 'database.db'
-
-# Создание подключения к базе данных
-conn = sqlite3.connect(db_path)
-cur = conn.cursor()
-# Создаем таблицу для хранения данных
-#def create_table():
-cur.execute('''CREATE TABLE IF NOT EXISTS users(
-    name TEXT,
-    birth TEXT,
-    job TEXT,
-    company TEXT,
-    country TEXT,
-    city TEXT,
-    address TEXT,
-    zip_code TEXT,                                         
-    phone TEXT,
-    email TEXT,
-    card_number TEXT,
-    card_expire TEXT,
-    security_code TEXT,
-    url TEXT
-    )''')
-
-
 
 #def unpack_gz():
 #print(os.listdir(source_dir))
@@ -54,16 +30,14 @@ for file in os.listdir(source_dir):
                     #print(row1)       
                     st = ''.join(row1) 
                     elem = st.split(';') # 
-                    #print(elem)
-                    cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(elem))
+                    print(elem)
+                    #cur.execute("INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", list(elem))
             count = count + 1 
 
         # Сохраняем изменения в базе данных
-conn.commit()
+        #conn.commit()
         # закрываем курсор
-cur.close()
+        #cur.close()
         # Закрываем соединение с базой данных
-conn.close()
+        #conn.close()
 
-# Вызов функции для импорта данных
-#save_csv_to_sqlite('file.csv', 'database.db')
