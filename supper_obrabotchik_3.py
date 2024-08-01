@@ -16,20 +16,20 @@ cur = conn.cursor()
 # Создаем таблицу для хранения данных
 #def create_table():
 cur.execute('''CREATE TABLE IF NOT EXISTS users(
-    name TEXT,
-    birth TEXT,
-    job TEXT,
-    company TEXT,
-    country TEXT,
-    city TEXT,
-    address TEXT,
-    zip_code TEXT,                                         
-    phone TEXT,
-    email TEXT,
-    card_number TEXT,
-    card_expire TEXT,
-    security_code TEXT,
-    url TEXT
+    name VARCHAR(60),
+    birth VARCHAR(20),
+    job VARCHAR(60),
+    company VARCHAR(60),
+    country VARCHAR(30),
+    city VARCHAR(30),
+    address VARCHAR(60),
+    zip_code VARCHAR(20),                                         
+    phone VARCHAR(20),
+    email VARCHAR(60),
+    card_number VARCHAR(20),
+    card_expire VARCHAR(20),
+    security_code VARCHAR(10),
+    url VARCHAR(20)
     )''')
 
 
