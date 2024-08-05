@@ -17,18 +17,18 @@ cur = conn.cursor()
 #def create_table():
 cur.execute('''CREATE TABLE IF NOT EXISTS users(
     name VARCHAR(60),
-    birth VARCHAR(20),
+    birth VARCHAR(10),
     job VARCHAR(60),
     company VARCHAR(60),
     country VARCHAR(30),
     city VARCHAR(30),
     address VARCHAR(60),
-    zip_code VARCHAR(20),                                         
+    zip_code VARCHAR(5),                                         
     phone VARCHAR(20),
     email VARCHAR(60),
     card_number VARCHAR(20),
-    card_expire VARCHAR(20),
-    security_code VARCHAR(10),
+    card_expire VARCHAR(5),
+    security_code VARCHAR(4),
     url VARCHAR(20)
     )''')
 
