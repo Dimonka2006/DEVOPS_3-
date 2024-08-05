@@ -14,12 +14,12 @@ CREATE TABLE IF NOT EXISTS users(
     security_code VARCHAR(4),
     url VARCHAR(20))
 
-    CREATE TABLE IF NOT EXISTS country(
+CREATE TABLE IF NOT EXISTS country(
     country_id INT PRIMARY KEY AUTO_INCRIMENT,    
     country VARCHAR(30)
     )
     
-    CREATE TABLE IF NOT EXISTS city(
+CREATE TABLE IF NOT EXISTS city(
         city_id INT PRIMARY KEY AUTO_INCRIMENT,
         city VARCHAR(30)
     )
